@@ -8,11 +8,14 @@
   <body ng-controller="mainCtrl">
     <div class="main-container">
       <h1> DevMountain Chat Room </h1>
-      <form ng-submit="postData(message)">
+      <form ng-submit="postData(message)" name="messageForm">
         <input class="form-control text-box" type="text" ng-model="message" placeholder="Message">
       </form>
       <div class="messages-container">
-        <p ng-repeat="message in messages"> {{message.text}} </p>
+        <div ng-repeat="message in messages"> 
+            <div class="messageText">{{message.text}}</div> <div class="messageDate">{{message.createdAt | date:'medium'}}</div>
+        
+        </div>
       </div>
     </div>
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>

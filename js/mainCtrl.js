@@ -9,7 +9,10 @@ app.controller('mainCtrl', function($scope, parseService){
   //your controllers $scope as messages ($scope.messages)
 
     $scope.getParseData = function(){
-        parseService.getData();
+        parseService.getData()
+                .then(function(result){
+                    $scope.messages = result;
+        });
     };
 
 
@@ -19,6 +22,8 @@ app.controller('mainCtrl', function($scope, parseService){
     $scope.postData = function(input) {
         console.log("postData ran");
         parseService.postData(input);
+        $scope.messageForm.$setPristine();
+        $scope.message = '';
     };
 
 

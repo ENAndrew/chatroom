@@ -13,10 +13,10 @@ app.service('parseService', function($http){
  this.getData = function(){
      return $http({
          method: 'GET',
-         url: 'http://api.parse.com/1/classes/chat?order=-createdAt'
+         url: 'https://api.parse.com/1/classes/chat?order=-createdAt'
      })
              .then(function(response){
-                 $scope.messages = response;  //can i do this or does it need to be in the controller?
+                 return response.data.results;  //'results' is an array w/in the returned data that we want. 
      });
              
  };
@@ -33,9 +33,6 @@ app.service('parseService', function($http){
           method: 'POST',
           url: 'https://api.parse.com/1/classes/chat', 
           data: {text: yourMessage}
-      })
-              .then(function(response){
-                  var abc = 123;
       });
   };
   
